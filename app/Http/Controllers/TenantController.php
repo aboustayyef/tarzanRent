@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 use App\Tenant;
-use Request;
 use \Redirect;
+use App\Http\Requests\tenantRequest ;
+use Illuminate\Http\Request ;
+
 
 class TenantController extends Controller {
 
@@ -14,7 +16,7 @@ class TenantController extends Controller {
    */
   public function index()
   {
-    $tenants = Tenant::all();
+    $tenants = Tenant::orderBy('name', 'Asc')->get();
     return view('tenants.index')->with('tenants', $tenants);
   }
 
@@ -33,9 +35,9 @@ class TenantController extends Controller {
    *
    * @return Response
    */
-  public function store()
+  public function store(tenantRequest $request)
   {
-    $input = Request::all();
+    $input = $request->all();
     Tenant::create($input);
     return Redirect::route('tenants.index');
   }
@@ -48,7 +50,8 @@ class TenantController extends Controller {
    */
   public function show($id)
   {
-    
+    $tenant = Tenant::findOrFail($id);
+    return view('tenants.show')->with(compact('tenant'));
   }
 
   /**
@@ -59,7 +62,8 @@ class TenantController extends Controller {
    */
   public function edit($id)
   {
-    
+    $tenant = Tenant::findOrFail($id);
+    return view('tenants.edit')->with('tenant', $tenant);
   }
 
   /**
@@ -68,9 +72,13 @@ class TenantController extends Controller {
    * @param  int  $id
    * @return Response
    */
-  public function update($id)
+  public function update($id, tenantRequest $request)
   {
     
+    $tenant = Tenant::findOrFail($id);
+    $tenant->update($request->all());
+    return Redirect::route('tenants.index');
+
   }
 
   /**
@@ -79,9 +87,10 @@ class TenantController extends Controller {
    * @param  int  $id
    * @return Response
    */
-  public function destroy($id)
+  public function destroy(Request $request)
   {
-    
+    Tenant::destroy($request->id);
+    return Redirect::route('tenants.index');
   }
   
 }
