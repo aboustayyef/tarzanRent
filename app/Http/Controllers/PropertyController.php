@@ -1,7 +1,12 @@
 <?php 
 
 namespace App\Http\Controllers;
+
 use App\Property;
+use \Redirect;
+use App\Http\Requests\propertyRequest ;
+use Illuminate\Http\Request ;
+
 
 class PropertyController extends Controller {
 
@@ -23,7 +28,7 @@ class PropertyController extends Controller {
    */
   public function create()
   {
-    
+    return view('properties.create');
   }
 
   /**
@@ -31,9 +36,11 @@ class PropertyController extends Controller {
    *
    * @return Response
    */
-  public function store()
+  public function store(propertyRequest $request)
   {
-    
+    $input = $request->all();
+    Property::create($input);
+    return Redirect::route('properties.index');
   }
 
   /**
@@ -76,9 +83,10 @@ class PropertyController extends Controller {
    * @param  int  $id
    * @return Response
    */
-  public function destroy($id)
+  public function destroy(Request $request)
   {
-    
+    Property::destroy($request->id);
+    return Redirect::route('properties.index');
   }
   
 }

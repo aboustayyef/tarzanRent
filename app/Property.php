@@ -10,9 +10,17 @@ class Property extends Model {
 	protected $table = 'properties';
 	public $timestamps = true;
 
+	 protected $guarded = ['created_at'];
+
 	public function contracts()
 	{
 		return $this->belongsToMany('App\Contract');
+	}
+
+// mutators
+
+	public function setValuationDateAttribute($value){
+		$this->attributes['valuation_date'] = new Carbon($value);
 	}
 
 
