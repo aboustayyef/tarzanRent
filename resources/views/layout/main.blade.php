@@ -20,12 +20,13 @@
   <body>
     <div class="container-fluid">
       <div id="header" class="row">
-        <h1>This is the header</h1>
-        <hr>
+        <div class="well">
+          <h1>This is the header</h1>
+        </div>
       </div>
       <div id="midsection" class="row">
         <div id="sidebar" class="col-xs-12 col-sm-3 col-lg-2 col-xl-1">
-          Sidebar here. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed maxime possimus iste similique fugit nobis soluta ad, praesentium obcaecati, dolore sit. Ab repellat consequatur quas delectus voluptates, magni, provident et, necessitatibus explicabo quod sed veritatis tempora perspiciatis ullam sapiente amet mollitia impedit autem illo voluptas reprehenderit debitis doloribus dolores sunt.
+          @include('layout.sidebar')
         </div>
         <div id="content" class="col-xs-12 col-sm-9 col-lg-10 col-xl-11">
           @yield('content')

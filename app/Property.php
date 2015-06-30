@@ -27,9 +27,13 @@ class Property extends Model {
 // Convenience Functions
 
 	public function latestContractExpiryDate(){
-		$latestContractExpires = $this->contracts()->orderBy('expiry_date','desc')->first()->expiry_date;
-		if (!empty($latestContractExpires)) {
-			return new Carbon($latestContractExpires);
+		if ($this->contracts()->count() > 0) 
+		{
+			$latestContractExpires = $this->contracts()->orderBy('expiry_date','desc')->first()->expiry_date;
+			if (!empty($latestContractExpires)) 
+			{
+				return new Carbon($latestContractExpires);
+			}		
 		}
 		return false;
 	}

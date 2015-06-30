@@ -63,7 +63,8 @@ class PropertyController extends Controller {
    */
   public function edit($id)
   {
-    
+    $property = Property::findOrFail($id);
+    return view('properties.edit')->with('property', $property);
   }
 
   /**
@@ -72,9 +73,13 @@ class PropertyController extends Controller {
    * @param  int  $id
    * @return Response
    */
-  public function update($id)
+  public function update($id, propertyRequest $request)
   {
     
+    $property = Property::findOrFail($id);
+    $property->update($request->all());
+    return Redirect::route('properties.index');
+
   }
 
   /**
