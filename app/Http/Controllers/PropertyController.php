@@ -13,6 +13,7 @@ class PropertyController extends Controller {
   public function index()
   {
     $properties = Property::all();
+    return view('properties.index')->with(compact('properties'));
   }
 
   /**
@@ -43,7 +44,8 @@ class PropertyController extends Controller {
    */
   public function show($id)
   {
-    
+   $property = Property::findOrFail($id);
+   return view('properties.show')->with('property',$property); 
   }
 
   /**
