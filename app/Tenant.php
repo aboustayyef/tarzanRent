@@ -26,4 +26,13 @@ class Tenant extends Model {
 		return $properties;
 	}
 
+	public static function availableTenants(){
+		$tenants = Self::all();
+		$result = [];
+		foreach ($tenants as $tenant) {
+			$result[$tenant->id] = $tenant->name;
+		}
+		return $result;
+	}
+
 }

@@ -7,6 +7,7 @@ List of Tarzan Contracts
 @section('content')
 
 	<H1>List of Rent Contracts</H1>
+	<hr>
 	<table class="table">
 		<thead>
 			<tr>
@@ -49,5 +50,7 @@ List of Tarzan Contracts
 			@endforeach
 		</tbody>
 	</table>
+
+	<a href="{{route('contracts.create')}}" class="btn btn-primary">Add New Contract</a>
 
 @stop

@@ -23,6 +23,10 @@ class Property extends Model {
 		$this->attributes['valuation_date'] = new Carbon($value);
 	}
 
+	public function getValuationDateAttribute($value){
+		$carbon = new Carbon($value);
+		return $carbon->format('d-m-Y');
+	}
 
 // Convenience Functions
 
@@ -54,6 +58,15 @@ class Property extends Model {
 			return $this->contracts()->orderBy('expiry_date','desc')->first()->tenant;
 		}
 		return false;
+	}
+
+	public static function availableProperties(){
+		$properties = Self::all();
+		$result = [];
+		foreach ($properties as $property) {
+			$result[$property->id] = $property->description;
+		}
+		return $result;
 	}
 
 }

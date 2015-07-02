@@ -1,6 +1,9 @@
 <?php 
 
 namespace App\Http\Controllers;
+use App\Http\Requests\Request;
+use App\Http\Requests\contractRequest;
+
 use App\Contract;
 
 class ContractController extends Controller 
@@ -24,7 +27,7 @@ class ContractController extends Controller
    */
   public function create()
   {
-    
+    return view('contracts.create');
   }
 
   /**
@@ -32,9 +35,11 @@ class ContractController extends Controller
    *
    * @return Response
    */
-  public function store()
+  public function store(contractRequest $request)
   {
-    
+    // THINGS TO DO BEFORE STORING:
+    // - Verify that expiry date is after effective date
+    // - Verify that properties are not bound to other contracts in the time frame
   }
 
   /**

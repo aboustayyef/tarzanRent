@@ -7,7 +7,7 @@ Create New Property
 @section('content')
 
 <h1>Create New Property</h1>
-
+<hr>
 {!! Form::open(['route' => 'properties.store']) !!}
 
 	@include('properties.form',['submitButtonText'=> 'Create Tenant'])

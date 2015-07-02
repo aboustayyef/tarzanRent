@@ -7,7 +7,7 @@
 			<tr>
 				<th>Description</th>
 				<th>Latest Tenant</th>
-				<th>Area (ft2)</th>
+				<th>Location</th>
 				<th></th>
 			</tr>
 		</thead>
@@ -31,7 +31,7 @@
 					@endif
 				</td>
 
-				<td>{{$property->area}}</td>
+				<td>{{$property->location}}</td>
 
 				<td>
 					<a href="{{route('properties.edit', ['properties' => $property->id])}}">Edit</a>

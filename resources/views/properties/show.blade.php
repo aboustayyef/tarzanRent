@@ -25,8 +25,12 @@ Property Details
 			<td>{{$property->asset_value}}</td>
 		</tr>
 		<tr>
-			<td>Area (In Feet Square)</td>
-			<td>{{$property->area}}</td>
+			<td>Indoor Area (In Feet Square)</td>
+			<td>{{$property->indoor_area}}</td>
+		</tr>
+		<tr>
+			<td>Land Area (In Feet Square)</td>
+			<td>{{$property->land_area}}</td>
 		</tr>
 		<tr>
 			<td>Last Valuation Date</td>

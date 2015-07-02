@@ -11,21 +11,21 @@
 </div>
 
 <div class="form-group">
-    {!! Form::label('latitude', 'Latitude:') !!}
-    {!! Form::text('latitude', null, ['class' => 'form-control']) !!}
-    <small class="text-danger">{{ $errors->first('latitude') }}</small>
+    {!! Form::label('coordinates', 'Coordinates (for maps):') !!}
+    {!! Form::text('coordinates', null, ['class' => 'form-control']) !!}
+    <small class="text-danger">{{ $errors->first('coordinates') }}</small>
 </div>
 
 <div class="form-group">
-    {!! Form::label('longitude', 'Longitude:') !!}
-    {!! Form::text('longitude', null, ['class' => 'form-control']) !!}
-    <small class="text-danger">{{ $errors->first('longitude') }}</small>
+    {!! Form::label('indoor_area', 'Indoor Area (in Feet square)') !!}
+    {!! Form::text('indoor_area', null, ['class' => 'form-control']) !!}
+    <small class="text-danger">{{ $errors->first('indoor_area') }}</small>
 </div>
 
 <div class="form-group">
-    {!! Form::label('area', 'Area (in Feet square)') !!}
-    {!! Form::text('area', null, ['class' => 'form-control']) !!}
-    <small class="text-danger">{{ $errors->first('area') }}</small>
+    {!! Form::label('land_area', 'Land Area (in Feet square)') !!}
+    {!! Form::text('land_area', null, ['class' => 'form-control']) !!}
+    <small class="text-danger">{{ $errors->first('land_area') }}</small>
 </div>
 
 <div class="form-group">
@@ -36,7 +36,7 @@
 
 <div class="form-group">
     {!! Form::label('valuation_date', 'Valuation Date: ') !!}
-    {!! Form::text('valuation_date', null, ['class' => 'form-control']) !!}
+    {!! Form::text('valuation_date', null, ['class' => 'form-control', 'placeholder'=>'dd-mm-yyyy']) !!}
     <small class="text-danger">{{ $errors->first('valuation_date') }}</small>
 </div>
 

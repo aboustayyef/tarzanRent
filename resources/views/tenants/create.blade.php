@@ -7,6 +7,7 @@ Create New Tenant
 @section('content')
 
 <h1>Create New Tenant</h1>
+<hr>
 
 {!! Form::open(['route' => 'tenants.store']) !!}
 
