@@ -14,7 +14,7 @@ class Property extends Model {
 
 	public function contracts()
 	{
-		return $this->belongsToMany('App\Contract');
+		return $this->belongsToMany('App\Contract')->withTimestamps();
 	}
 
 // mutators
