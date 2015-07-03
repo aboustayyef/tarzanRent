@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Http\Requests\Request;
 use App\Http\Requests\contractRequest;
-
+use Carbon\Carbon;
 use App\Contract;
 
 class ContractController extends Controller 
@@ -37,6 +37,13 @@ class ContractController extends Controller
    */
   public function store(contractRequest $request)
   {
+    $effective = new Carbon($request->effective_date);
+    $expiry = new Carbon($request->expiry_date);
+    if ( $effective > $expiry) {
+      \Session::flash('message', 'Expiry date cannot be set before effective date');
+      return redirect()->route('contracts.create')->withInput();
+    }
+    dd('all ok');
     // THINGS TO DO BEFORE STORING:
     // - Verify that expiry date is after effective date
     // - Verify that properties are not bound to other contracts in the time frame
