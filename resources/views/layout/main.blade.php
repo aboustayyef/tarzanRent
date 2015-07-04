@@ -28,8 +28,13 @@
         <div id="sidebar" class="col-xs-12 col-sm-3 col-lg-2 col-xl-1">
           @include('layout.sidebar')
         </div>
+        
         <div id="content" class="col-xs-12 col-sm-9 col-lg-10 col-xl-11">
+
+          @include('layout.message')
+
           @yield('content')
+
         </div>
       </div>
       

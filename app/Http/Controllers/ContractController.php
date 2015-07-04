@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use App\Contract;
 use App\Property;
 use App\Tenant;
+use App\ContractFormHandler ;
 
 
 class ContractController extends Controller 
@@ -40,43 +41,21 @@ class ContractController extends Controller
    */
   public function store(contractRequest $request)
   {
+
+    // use my custom handler to fix dates, check if dates are valid and see if the stores are available to rent
+    $contractFormHandler = new ContractFormHandler($request);
     
-    $effective = new Carbon($request->effective_date);
-    // set effective day to first day of month;
-    $effective->day = 1;
-
-    $expiry = new Carbon($request->expiry_date);
-    // set day of expiry to last day of month
-    $expiry->day = $expiry->daysInMonth;
-
-    // check if effective date is > expiry date
-    if ( $effective > $expiry) {
-      \Session::flash('message', 'Expiry date cannot be set before effective date');
-      return redirect()->route('contracts.create')->withInput();
-    }
-
-    // check if properties selected are not committed (need to test this)
-    $properties = $request->properties;
-    $committedProperties = "";
-
-    foreach ($properties as $key => $property) {
-      $propertyInFocus = Property::findorFail($property);
-
-      if ($effective < $propertyInFocus->latestContractExpiryDate()  ) {
-        $committedProperties .= " $propertyInFocus->description";
-      }
-    }
-
-    if (strlen($committedProperties) > 0 ) {
-      \Session::flash('message', 'The following properties are already committed in that date range: ' . $committedProperties);
+    if ($contractFormHandler->hasErrors ) {
+      \Session::flash('message', $contractFormHandler->errorMessages);
+      \Session::flash('messageType', 'warning');
       return redirect()->route('contracts.create')->withInput();
     }
 
     // if all is ok
     $contract = new Contract;
     $contract->description = $request->description;
-    $contract->effective_date = $effective;
-    $contract->expiry_date = $expiry;
+    $contract->effective_date = $contractFormValidator->effectiveDate;
+    $contract->expiry_date = $contractFormValidator->expiryDate;
 
     // associate with tenant
     $tenant = Tenant::findOrFail($request->tenant);
@@ -113,7 +92,9 @@ class ContractController extends Controller
    */
   public function edit($id)
   {
-    
+
+    $contract = Contract::findOrFail($id);
+    return view('contracts.edit')->with('contract', $contract);
   }
 
   /**
@@ -122,8 +103,17 @@ class ContractController extends Controller
    * @param  int  $id
    * @return Response
    */
-  public function update($id)
+  public function update(contractRequest $request)
   {
+
+    // use my custom handler to fix dates, check if dates are valid and see if the stores are available to rent
+    $contractFormHandler = new ContractFormHandler($request);
+    
+    if ($contractFormHandler->hasErrors ) {
+      \Session::flash('message', $contractFormHandler->errorMessages);
+      \Session::flash('messageType', 'warning');
+      return redirect()->route('contracts.edit')->withInput();
+    }
     
   }
 
