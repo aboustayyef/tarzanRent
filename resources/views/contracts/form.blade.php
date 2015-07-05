@@ -19,15 +19,27 @@
 
 <div class="form-group">
     {!! Form::label('tenant', 'Tenant') !!}
-    {!! Form::select('tenant', App\Tenant::availableTenants(), ['class' => 'form-control']) !!}
+
+    {{-- Set default depending on whether editing or creating --}}
+    <?php $default = isset($contract)? $contract->tenant->id : null ;?>
+
+    {!! Form::select('tenant', App\Tenant::availableTenants(), $default, ['class' => 'form-control']) !!}
     <small class="text-danger">{{ $errors->first('tenant') }}</small>
 </div>
 
 <div class="form-group">
     {!! Form::label('properties', 'Properties (You can select multiple properties)') !!}
-    <br>
-    {!! Form::select('properties[]', App\Property::availableProperties() , ['class' => 'form-control'], ['multiple']) !!}
+    
+    {{-- Set default depending on whether editing or creating --}}
+    <?php $default = isset($contract)? $contract->properties->lists('id')->toArray() : null ;?>
+
+    {!! Form::select('properties[]', App\Property::availableProperties(), $default, [
+                                'class' => 'form-control',
+                                'id'    => 'properties',
+                                'multiple' => true
+                                ]) !!}
     <small class="text-danger">{{ $errors->first('properties') }}</small>
+
 </div>
 
 {!! Form::submit($submitButtonText, ['class'=>'btn btn-primary']) !!}

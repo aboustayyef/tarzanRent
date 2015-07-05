@@ -12,12 +12,12 @@ class CreatePropertiesTable extends Migration {
 			$table->timestamps();
 			$table->string('description');
 			$table->string('location');
-			$table->string('latitude')->nullable();
-			$table->string('longitude')->nullable();
+			$table->string('coordinates')->nullable();
 			$table->integer('asset_value');
 			$table->timestamp('valuation_date');
 			$table->text('valuation_notes');
-			$table->float('area');
+			$table->float('land_area')->nullable();
+			$table->float('indoor_area')->nullable();
 		});
 	}
 

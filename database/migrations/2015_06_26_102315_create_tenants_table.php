@@ -13,7 +13,6 @@ class CreateTenantsTable extends Migration {
 			$table->string('name');
 			$table->text('notes')->nullable();
 			$table->string('contact_person')->nullable();
-			$table->text('contact_details')->nullable();
 		});
 	}
 

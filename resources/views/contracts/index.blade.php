@@ -13,7 +13,8 @@ List of Tarzan Contracts
 			<tr>
 				<th>Description</th>
 				<th>Properties</th>
-				<th>Expires</th>
+				<th>From</th>
+				<th>To</th>
 				<th>Months Left</th>
 				<th></th>
 			</tr>
@@ -34,7 +35,10 @@ List of Tarzan Contracts
 						@if($key < $properties->count() - 1 ) , @endif
 					@endforeach
 				</td>
-				
+				<td>
+					<?php $effective = new Carbon\Carbon($contract->effective_date); ?>
+					{{ $effective->format('M, Y')}}
+				</td>
 				<td>
 					<?php $expiry = new Carbon\Carbon($contract->expiry_date); ?>
 					{{ $expiry->format('M, Y')}}

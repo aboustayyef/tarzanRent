@@ -11,7 +11,7 @@
 
       <div class="modal-footer">
   
-        {!! Form::open(['method' => 'DELETE', 'route' => ['properties.destroy', 'properties' => $contract->id]]) !!}
+        {!! Form::open(['method' => 'DELETE', 'route' => ['contracts.destroy', 'contracts' => $contract->id]]) !!}
         {!! Form::hidden('id', $contract->id) !!}
         {!! Form::submit("Delete", ['class' => 'btn btn-danger']) !!}
         
