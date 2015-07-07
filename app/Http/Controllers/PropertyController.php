@@ -15,6 +15,7 @@ class PropertyController extends Controller {
    *
    * @return Response
    */
+  
   public function index()
   {
     $properties = Property::all();
@@ -39,7 +40,29 @@ class PropertyController extends Controller {
   public function store(propertyRequest $request)
   {
     $input = $request->all();
-    Property::create($input);
+
+    // we don't want the attached image to be part of the mass assignment
+    unset($input['image']);
+
+    $property = Property::create($input);
+
+    if ($request->hasfile('image')) {
+      
+      // get file's name
+      $filename = $request->file('image')->getClientOriginalName();
+      // prepare destination
+      $destinationPath = public_path() . "/img/properties/";
+      
+      // put copy of uploaded image at destination folder
+      $request->file('image')->move($destinationPath, $filename);
+
+      $property->image = $filename;
+      $property->save();
+    }
+
+    \Session::flash('messageType','success');
+    \Session::flash('message', 'Property Successfully created');
+
     return Redirect::route('properties.index');
   }
 
@@ -52,6 +75,7 @@ class PropertyController extends Controller {
   public function show($id)
   {
    $property = Property::findOrFail($id);
+
    return view('properties.show')->with('property',$property); 
   }
 

@@ -46,4 +46,11 @@
     <small class="text-danger">{{ $errors->first('valuation_notes') }}</small>
 </div>
 
+<div class="form-group">
+    {!! Form::label('image', 'Property Image') !!}
+    {!! Form::file('image') !!}
+    <p class="help-block">Add an image here for property</p>
+    <small class="text-danger">{{ $errors->first('image') }}</small>
+</div>
+
 {!! Form::submit($submitButtonText, ['class'=>'btn btn-primary']) !!}
