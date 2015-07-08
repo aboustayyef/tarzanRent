@@ -10,7 +10,7 @@ Create New Property
 <hr>
 {!! Form::open(['route' => 'properties.store', 'files' => true]) !!}
 
-	@include('properties.form',['submitButtonText'=> 'Create Tenant'])
+	@include('properties.form',['submitButtonText'=> 'Create Property'])
 
 {!! Form::close() !!}
 

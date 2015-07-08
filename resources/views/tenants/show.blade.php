@@ -16,6 +16,14 @@ Update Tenant Info
 			<td>Tenant Name: </td>
 			<td>{{$tenant->name}}</td>
 		</tr>
+	@if($properties = $tenant->properties())
+		<tr>
+			<td>Properties Rented: </td>
+			<td>
+				@include('tenants._list_of_properties')
+			</td>
+		</tr>		
+	@endif
 		<tr>
 			<td>Contact Person:</td>
 			<td>{{$tenant->contact_person}}</td>
