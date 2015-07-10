@@ -44,7 +44,14 @@ List of Tarzan Contracts
 					{{ $expiry->format('M, Y')}}
 				</td>
 				
-				<td>{{$expiry->diffInMonths()}}</td>
+				<td>
+					<?php $now = new Carbon\Carbon; ?>
+					@if($expiry > $now)
+						{{$expiry->diffInMonths()}}
+					@else
+						<em>Expired</em>
+					@endif
+				</td>
 
 				<td>
 					<a href="{{route('contracts.edit', ['contracts' => $contract->id])}}">Edit</a>

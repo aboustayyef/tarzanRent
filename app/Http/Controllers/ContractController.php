@@ -22,7 +22,7 @@ class ContractController extends Controller
    */
   public function index()
   {
-    $contracts = Contract::all();
+    $contracts = Contract::orderBy('expiry_date','desc')->get();
     return view('contracts.index')->with('contracts', $contracts);
   }
 
@@ -58,6 +58,7 @@ class ContractController extends Controller
     $contract->description = $request->description;
     $contract->effective_date = $contractFormHandler->effectiveDate;
     $contract->expiry_date = $contractFormHandler->expiryDate;
+    $contract->terms = $request->terms;
 
     // associate with tenant
     $tenant = Tenant::findOrFail($request->tenant);
@@ -125,7 +126,8 @@ class ContractController extends Controller
     $contract->description = $request->description;
     $contract->effective_date = $contractFormHandler->effectiveDate;
     $contract->expiry_date = $contractFormHandler->expiryDate;
-
+    $contract->terms = $request->terms;
+    
     // associate with tenant
     $tenant = Tenant::findOrFail($request->tenant);
     $contract->tenant()->associate($tenant);

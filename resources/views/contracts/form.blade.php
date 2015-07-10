@@ -42,4 +42,10 @@
 
 </div>
 
+<div class="form-group">
+    {!! Form::label('terms', 'Terms and Notes') !!}
+    {!! Form::textarea('terms', null, ['class' => 'form-control']) !!}
+    <small class="text-danger">{{ $errors->first('terms') }}</small>
+</div>
+
 {!! Form::submit($submitButtonText, ['class'=>'btn btn-primary']) !!}
