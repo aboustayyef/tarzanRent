@@ -25,9 +25,10 @@ class contractRequest extends Request
     {
         return [
             'description'=>'required',
-            'effective_date'=>'date_format:d-m-Y',
-            'expiry_date'=>'date_format:d-m-Y',
-            'properties'=>'required'
+            'effective_date'=>'required',
+            'expiry_date'=>'required',
+            'properties'=>'required',
+            'amount'    =>'required|numeric',
         ];
     }
 }

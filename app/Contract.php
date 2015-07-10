@@ -26,17 +26,4 @@ class Contract extends Model {
 		return $this->hasMany('App\Payment');
 	}
 
-// mutators
-
-	public function getEffectiveDateAttribute($value){
-		$carbon = new Carbon($value);
-		return $carbon->format('d-m-Y');
-	}
-
-	public function getExpiryDateAttribute($value){
-		$carbon = new Carbon($value);
-		return $carbon->format('d-m-Y');
-	}
-
-
 }

@@ -51,11 +51,12 @@
 		    if (strlen($committedProperties) > 0 ) {
 		        $this->errorMessages .= 'The following properties are already committed in that date range: ' . $committedProperties;
 		    }
-
+			*/
+		
 		    if (strlen($this->errorMessages) > 0 ) {
 		    	$this->hasErrors = true;
 		    }
-		    */
+		    
 		}
 	}
 

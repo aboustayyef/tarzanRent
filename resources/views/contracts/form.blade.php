@@ -6,14 +6,20 @@
 </div>
 
 <div class="form-group">
+    {!! Form::label('signing_date', 'Contract Signing Date: ') !!}
+    {!! Form::date('signing_date', null, ['class' => 'form-control']) !!}
+    <small class="text-danger">{{ $errors->first('signing_date') }}</small>
+</div>
+
+<div class="form-group">
     {!! Form::label('effective_date', 'Effective Date:') !!}
-    {!! Form::text('effective_date', null, ['class' => 'form-control', 'placeholder' => 'dd-mm-yyyy']) !!}
+    {!! Form::date('effective_date', null, ['class' => 'form-control']) !!}
     <small class="text-danger">{{ $errors->first('effective_date') }}</small>
 </div>
 
 <div class="form-group">
     {!! Form::label('expiry_date', 'Expiry Date:') !!}
-    {!! Form::text('expiry_date', null, ['class' => 'form-control', 'placeholder' => 'dd-mm-yyyy']) !!}
+    {!! Form::date('expiry_date', null, ['class' => 'form-control']) !!}
     <small class="text-danger">{{ $errors->first('expiry_date') }}</small>
 </div>
 
@@ -25,6 +31,18 @@
 
     {!! Form::select('tenant', App\Tenant::availableTenants(), $default, ['class' => 'form-control']) !!}
     <small class="text-danger">{{ $errors->first('tenant') }}</small>
+</div>
+
+<div class="form-group">
+    {!! Form::label('amount', 'Monthly Amount:') !!}
+    {!! Form::text('amount', null, ['class' => 'form-control']) !!}
+    <small class="text-danger">{{ $errors->first('amount') }}</small>
+</div>      
+
+<div class="form-group">
+    {!! Form::label('currency', 'Currency: ') !!}
+    {!! Form::select('currency', ['USD','GHS'], "USD", ['class' => 'form-control']) !!}
+    <small class="text-danger">{{ $errors->first('currency') }}</small>
 </div>
 
 <div class="form-group">

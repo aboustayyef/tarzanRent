@@ -56,9 +56,13 @@ class ContractController extends Controller
     // if all is ok
     $contract = new Contract;
     $contract->description = $request->description;
-    $contract->effective_date = $contractFormHandler->effectiveDate;
-    $contract->expiry_date = $contractFormHandler->expiryDate;
+    $contract->effective_date = $request->effective_date;
+    $contract->expiry_date = $request->expiry_date;
     $contract->terms = $request->terms;
+    $contract->signing_date = $request->signing_date;
+    $contract->amount = $request->amount;
+    $contract->currency = $request->currency;
+
 
     // associate with tenant
     $tenant = Tenant::findOrFail($request->tenant);
@@ -124,9 +128,12 @@ class ContractController extends Controller
 
     // update info
     $contract->description = $request->description;
-    $contract->effective_date = $contractFormHandler->effectiveDate;
-    $contract->expiry_date = $contractFormHandler->expiryDate;
+    $contract->effective_date = $request->effective_date;
+    $contract->expiry_date = $request->expiry_date;
     $contract->terms = $request->terms;
+    $contract->signing_date = $request->signing_date;
+    $contract->amount = $request->amount;
+    $contract->currency = $request->currency;
     
     // associate with tenant
     $tenant = Tenant::findOrFail($request->tenant);
